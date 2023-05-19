@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP">
+		<style type="text/css">
+			body { 
+				background-color: white;
+				font-family: "Noto Sans JP", sans-serif;
+			}
+			main {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background: none;
+				top: 50%;
+				left: 50%;
+				padding: 40px;
+				box-sizing: border-box;
+				transform: translate(-50%, -50%);
+				perspective: 400px;
+			}
+			.card {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				transform-style: preserve-3d;
+				transition: all 0.8s ease;
+				user-select: none;
+			}
+			.card > .face {
+				color: white;
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				backface-visibility: hidden;
+				text-align: center;
+				border-radius: 40px;
+			}
+			.card > .face.front {
+				background: #ffc728;
+				display: grid;
+				grid-template-columns: 1fr;
+				grid-template-rows: 1fr 1fr;
+			}
+			.card > .face.back {
+				background: purple;
+				transform: rotate3d(0, 1, 0, 180deg);
+			}
+			.card.flip {
+				transform: rotate3d(0, 1, 0, 180deg);
+			}
+			.card > .face > .glyph {
+				font-size: 128pt;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<article class="card" id="card-a">
+				<section class="face front">
+					<div class="glyph">国</div>
+				</section>
+				<section class="face back">
+					B
+				</section>
+			</article>
+		</main>
+		<script>
+			const card = document.getElementById("card-a");
+			card.addEventListener("click", function(evt) {
+				card.classList.toggle("flip");
+			});
+		</script>
+	</body>
+</html>
